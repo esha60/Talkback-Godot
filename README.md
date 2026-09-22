@@ -33,6 +33,9 @@ exactly as before.
   alongside it.
 - **`talkback_gesture_handler.gd`** — a prototype gesture-based screen-reader simulator, kept for
   editor/non-Android testing and automatically bypassed when a real screen reader is detected.
+- **`dynamic_3d_accessibility_bridge.gd`** — a second, independent bridge that brings the same
+  invisible-overlay approach to 3D scenes (see [3D Accessibility Bridge](#3d-accessibility-bridge)
+  below).
 - **`test_native_accessibility_validation.gd`** — a white-box validation suite that calls the same
   handler functions Android's native accessibility actions invoke, directly.
 
@@ -52,6 +55,39 @@ engine-level context this addon depends on.
 | Accessibility node creation order follows the IMDF navigation graph (BFS), with a geometric fallback | Verified directly from Godot's engine source that Android's accessibility traversal follows scene-tree child order, not `focus_neighbor_*` (which only drives keyboard/gamepad navigation). |
 | Validation suite calls handler functions directly instead of simulating touch/gesture input | Real TalkBack bypasses Godot's `InputEvent` pipeline entirely (native `ACTION_FOCUS`/`ACTION_CLICK`), so simulating input events would test a path TalkBack doesn't actually use. |
 | BFS for route-finding | Unweighted graph, small room counts — gives the shortest hop-count route without the added complexity of Dijkstra/A*. |
+
+## 3D Accessibility Bridge
+
+The 2D `DynamicMapView` bridge overlays invisible `Button`s at fixed 2D room rectangles. It has no
+notion of a camera, so it can't track a moving/rotating 3D scene. `dynamic_3d_accessibility_bridge.gd`
+(`Dynamic3DAccessibilityBridge`) extends the same invisible-overlay technique to that case:
+
+- **`register_target(unit_id, node, tooltip, aabb)`** — registers any `Node3D` (optionally with a
+  custom `AABB`) as an accessible target; falls back to the node's own `VisualInstance3D.get_aabb()`
+  or a small default bounding box if none is given.
+- **Per-frame screen projection** — every frame, each target's `AABB` corners are projected to 2D
+  screen space via `Camera3D.unproject_position()`, and the invisible `Button` overlay is resized
+  and repositioned to the resulting bounding rectangle. `Camera3D.is_position_behind()` disables and
+  hides the button for anything off-screen or behind the camera, so the accessibility overlay stays
+  correct as the camera moves, rotates, or orbits.
+- **Minimum touch target size** — projected rectangles are padded up to at least 44×44 pixels, a
+  standard minimum accessible touch-target size, even if the 3D object projects to something smaller
+  on screen.
+- **Traversal order** — targets are sorted by projected screen position (top-to-bottom, then
+  left-to-right) every frame, and the overlay `Button`s are reordered in the scene tree (plus
+  `accessibility_flow_to_nodes` reassigned) to match — reusing the same "scene-tree order is what
+  Android's accessibility tree actually reads" principle established for the 2D bridge, but
+  recomputed continuously since a 3D camera can change what's on-screen and in what order at any time.
+- **`test_3d_accessibility_scene.gd`** — a demo scene with an orbiting camera and three registered
+  3D rooms, useful for visually confirming the overlay tracks correctly as the camera moves.
+- **`test_3d_accessibility_validation.gd`** — white-box tests covering target registration, button
+  properties, projection/alignment against the camera's own `unproject_position()`, off-screen
+  disabling, traversal ordering, `flow_to` linking, signal propagation, and cleanup — following the
+  same direct-handler-call testing approach as the 2D validation suite.
+
+This is a separate, opt-in component — it does not replace or modify `DynamicMapView` or the IMDF
+2D pipeline; a project can use either bridge independently depending on whether its accessible
+content is 2D or 3D.
 
 ## Running it
 
