@@ -1,0 +1,29 @@
+Copyright (c) 2026 Eshanye J. All Rights Reserved.
+
+This repository is published publicly for portfolio, academic evaluation, and
+demonstration purposes only.
+
+This project was developed as an academic/college project undertaken as part
+of the Samsung PRISM program. No employment relationship, non-disclosure
+agreement, or confidentiality agreement governs this work; the author retains
+copyright in the original source code contained in this repository.
+
+No permission is granted to any person to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of this software, in whole or in
+part, for any purpose, without the prior written permission of the copyright
+holder. Viewing the source code on this public repository does not constitute
+such permission.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHOR BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY ARISING FROM THE
+USE OF THIS SOFTWARE.
+
+---
+
+This project is an addon built for Godot Engine (https://godotengine.org).
+Godot Engine itself is separately licensed under the MIT License, Copyright
+(c) 2014-present Godot Engine contributors, and is not redistributed by this
+repository — this repository targets the official Godot 4.7 Stable Editor as
+a runtime and contains no Godot engine source code.

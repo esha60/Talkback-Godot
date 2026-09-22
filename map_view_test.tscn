@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ccvo27lhn748a"]
+
+[ext_resource type="Script" uid="uid://b76654yt8qb7y" path="res://addons/talkback_imdf_system/test/test_mapview_scene.gd" id="1_u5n5n"]
+[ext_resource type="Script" uid="uid://hbabdbbtukn8" path="res://addons/talkback_imdf_system/mapview/dynamic_mapview.gd" id="2_0ym40"]
+
+[node name="MapViewTest" type="Node2D" unique_id=459683566]
+script = ExtResource("1_u5n5n")
+
+[node name="DynamicMapView" type="Control" parent="." unique_id=1942215476]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("2_0ym40")
+metadata/_custom_type_script = "uid://hbabdbbtukn8"

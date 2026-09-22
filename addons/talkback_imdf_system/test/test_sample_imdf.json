@@ -1,0 +1,144 @@
+{
+  "id": "test_building_001",
+  "name": "Test Shopping Mall",
+  "address": "123 Main Street, City, State 12345",
+  "version": "1.0",
+  "coordinate_system": "mercator_wgs84",
+  "anchor": {
+    "latitude": 40.7128,
+    "longitude": -74.0060
+  },
+  "units": [
+    {
+      "id": "room_001",
+      "name": "Main Entrance",
+      "unit_type": "area",
+      "accessibility": "public",
+      "level": 0,
+      "geometry": [
+        {"x": 0, "y": 0},
+        {"x": 100, "y": 0},
+        {"x": 100, "y": 100},
+        {"x": 0, "y": 100}
+      ],
+      "pois": [
+        {
+          "id": "poi_001",
+          "name": "Information Desk",
+          "poi_type": "information",
+          "position": {"x": 50, "y": 50},
+          "accessibility": "public"
+        }
+      ]
+    },
+    {
+      "id": "room_002",
+      "name": "Main Corridor",
+      "unit_type": "corridor",
+      "accessibility": "public",
+      "level": 0,
+      "geometry": [
+        {"x": 100, "y": 25},
+        {"x": 250, "y": 25},
+        {"x": 250, "y": 75},
+        {"x": 100, "y": 75}
+      ],
+      "pois": []
+    },
+    {
+      "id": "room_003",
+      "name": "Food Court",
+      "unit_type": "room",
+      "accessibility": "public",
+      "level": 0,
+      "geometry": [
+        {"x": 250, "y": 0},
+        {"x": 400, "y": 0},
+        {"x": 400, "y": 150},
+        {"x": 250, "y": 150}
+      ],
+      "pois": [
+        {
+          "id": "poi_002",
+          "name": "Dining Area",
+          "poi_type": "dining",
+          "position": {"x": 325, "y": 75},
+          "accessibility": "public"
+        },
+        {
+          "id": "poi_003",
+          "name": "Restroom",
+          "poi_type": "restroom",
+          "position": {"x": 380, "y": 20},
+          "accessibility": "public"
+        }
+      ]
+    },
+    {
+      "id": "room_004",
+      "name": "Store A",
+      "unit_type": "room",
+      "accessibility": "public",
+      "level": 0,
+      "geometry": [
+        {"x": 250, "y": 150},
+        {"x": 400, "y": 150},
+        {"x": 400, "y": 300},
+        {"x": 250, "y": 300}
+      ],
+      "pois": [
+        {
+          "id": "poi_004",
+          "name": "Store Entrance",
+          "poi_type": "entrance",
+          "position": {"x": 325, "y": 150},
+          "accessibility": "public"
+        }
+      ]
+    },
+    {
+      "id": "room_005",
+      "name": "Store B",
+      "unit_type": "room",
+      "accessibility": "public",
+      "level": 0,
+      "geometry": [
+        {"x": 100, "y": 150},
+        {"x": 250, "y": 150},
+        {"x": 250, "y": 300},
+        {"x": 100, "y": 300}
+      ],
+      "pois": [
+        {
+          "id": "poi_005",
+          "name": "Checkout Counter",
+          "poi_type": "checkout",
+          "position": {"x": 175, "y": 150},
+          "accessibility": "public"
+        }
+      ]
+    },
+    {
+      "id": "room_006",
+      "name": "Elevator Area",
+      "unit_type": "area",
+      "accessibility": "public",
+      "level": 0,
+      "geometry": [
+        {"x": 0, "y": 100},
+        {"x": 100, "y": 100},
+        {"x": 100, "y": 200},
+        {"x": 0, "y": 200}
+      ],
+      "pois": [
+        {
+          "id": "poi_006",
+          "name": "Elevator",
+          "poi_type": "elevator",
+          "position": {"x": 50, "y": 150},
+          "accessibility": "public"
+        }
+      ]
+    }
+  ]
+}
